@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import {submitCredentials} from './registerSlice';
 import './register.css';
 import { useDispatch } from 'react-redux';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons"
 
 export default function Register(){
 
@@ -40,7 +41,24 @@ export default function Register(){
                     <input type="password" name="passwordConfirm" onChange={handlePasswordConfirmChange} value={confirmPassword} placeholder="Confirm password" required />
                     <input type="submit" value="Submit" />
                 </form>
-                <div className="login-prompt">
+                <div className="icons">
+                    <div className="google">
+                        <a href="http://localhost:3000/api/auth/google">
+                            <FontAwesomeIcon icon={faGoogle} />
+                        </a>
+                    </div>
+                    <div className="facebook">
+                        <a href="http://localhost:3000/api/auth/google">
+                            <FontAwesomeIcon icon={faFacebook} />
+                        </a>
+                    </div>  
+                    <div className="github">
+                        <a href="http://localhost:3000/api/auth/google">
+                            <FontAwesomeIcon icon={faGithub} />
+                        </a>
+                    </div>                                                         
+                </div>
+                <div className="loginPrompt">
                     <p>Already have an accout? <Link to='/login'>Sign in here</Link></p>
                 </div>                
             </div>

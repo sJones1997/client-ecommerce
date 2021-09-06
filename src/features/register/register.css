@@ -10,7 +10,7 @@
     box-sizing: border-box;
     background-color: #fff;
     width:20%;
-    height:50%;
+    height:60%;
     border-radius: 3px;
     box-shadow: 0 0 4px rgba(66,66,66,0.35);
     text-align: center;    
@@ -20,8 +20,54 @@
     justify-content: space-evenly;
 }
 
+.registerContainer .formContainer h1 {
+    color:#254E58;
+    font-weight: 600;  
+}
+
 .registerContainer .formContainer form {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 0 auto;
+    height:50%;
+}
 
+.registerContainer .formContainer form input {
+    padding: 7px 5px;
+    border: none;
+    border-bottom: 1px solid #112d32; 
+}
+
+.registerContainer .formContainer form input:focus {
+    border-bottom: 1px solid #112d32;
+    outline: none;
+}
+
+.registerContainer .formContainer form input[type = submit] {
+    border: none;
+    background-color:#112d32;
+    color:#fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    width:35%;    
+}
+
+.registerContainer .formContainer .icons {
+    display: flex;
+    justify-content: space-between;
+    width:70%;
+    margin: 0 auto;
+}
+
+.registerContainer .formContainer .icons div a {
+    font-size: 1.75em;
+    color:#112d32;
+}
+
+.registerContainer .formContainer .loginPrompt a {
+    color:#112d32;
+    font-weight: 600;    
 }

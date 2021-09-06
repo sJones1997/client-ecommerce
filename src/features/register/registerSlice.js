@@ -5,7 +5,7 @@ export const submitCredentials = createAsyncThunk(
     'registerSlice/submitDetails',
     async (userObj) => {
         const {username, password, confirmPassword} = userObj;
-        const basic = `${username}.${password}.${confirmPassword}`;
+        const basic = `${username}:${password}:${confirmPassword}`;
         const basicEncoded = Buffer.from(basic).toString('base64');
         console.log(basicEncoded)
         const data = await fetch(`${baseUrl}/users`, {
