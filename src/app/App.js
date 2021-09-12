@@ -14,9 +14,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <header>
-
-        </header>
         <main>
           <Switch>
             <Route exact path='/home' component={Homepage} />

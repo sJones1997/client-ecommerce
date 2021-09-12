@@ -18,8 +18,6 @@ export default function Register(){
     const errorMessage = useSelector(errorMsg);
     const dispatch = useDispatch();
 
-
-
     useEffect(() => {
         async function checkSession(){
             const {status} = await checkForSession(location.pathname);

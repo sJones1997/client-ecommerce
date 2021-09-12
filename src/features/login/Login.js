@@ -20,7 +20,6 @@ export default function Login(){
     useEffect(() => {
         async function checkSession(){
             const {status} = await checkForSession(location.pathname);
-            console.log(status)
             if(status === 1){
                 history.push('/home')
             }             
