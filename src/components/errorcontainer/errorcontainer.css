@@ -1,0 +1,16 @@
+
+
+.errorContainer {
+    position: absolute !important;
+    top:0;
+    padding:15px;
+    margin-top: 1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(241, 130, 141,0.75);
+    width:25%;
+    color:#fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}

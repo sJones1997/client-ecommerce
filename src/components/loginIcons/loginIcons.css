@@ -1,0 +1,11 @@
+.icons {
+    display: flex;
+    justify-content: space-between;
+    width:70%;
+    margin: 0 auto;
+}
+
+.icons div a {
+    font-size: 1.75em;
+    color:#112d32;
+}

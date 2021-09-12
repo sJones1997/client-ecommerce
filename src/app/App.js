@@ -7,9 +7,10 @@ import './app.css';
 import Homepage from '../features/homepage/Homepage';
 import Login from '../features/login/Login';
 import Register from '../features/register/Register';
-export const baseUrl = 'http://localhost:3000/api'
+export const baseUrl = 'http://localhost:3001/api'
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -18,7 +19,7 @@ function App() {
         </header>
         <main>
           <Switch>
-            <Route exact path='/' component={Homepage} />
+            <Route exact path='/home' component={Homepage} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
           </Switch>          

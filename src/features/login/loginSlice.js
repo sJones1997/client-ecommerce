@@ -2,14 +2,14 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {baseUrl} from '../../app/App';
 
 export const submitCredentials = createAsyncThunk(
-    'registerSlice/submitDetails',
+    'loginSlice/submitDetails',
     async (userObj) => {
-        const {username, password, confirmPassword} = userObj;
-        const basic = `${username}:${password}:${confirmPassword}`;
+        const {username, password} = userObj;
+        const basic = `${username}:${password}`;
         const basicEncoded = Buffer.from(basic).toString('base64');
-        const data = await fetch(`${baseUrl}/auth`, {
+        const data = await fetch(`${baseUrl}/auth/login`, {
             method: 'POST',
-            headers: {
+            headers: {              
                 'Accept': 'application/json',
                 'Authorization': `Basic ${basicEncoded}`
             }
@@ -18,14 +18,14 @@ export const submitCredentials = createAsyncThunk(
         return json;
         
     }
-) 
+);
 
-const registerSlice = createSlice({
-    name: 'registerSlice',
+const loginSlice = createSlice({
+    name: 'loginSlice',
     initialState: {
         isLoading: false,
         hasError: false,
-        registrationSuccessful: null,
+        loginSuccessful: null,
         errorMsg: ''
     },
     reducers: {
@@ -34,27 +34,26 @@ const registerSlice = createSlice({
     extraReducers: {
         [submitCredentials.pending]: (state, action) => {
             state.isLoading = true;
-            state.hasError = false
+            state.hasError = false;
         },
         [submitCredentials.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
-            console.log(action.payload)
             if(action.payload.status === 1){
-                state.registrationSuccessful = true
+                state.loginSuccessful = true;
             } else {
-                state.registrationSuccessful = false
-                state.errorMsg = action.payload.message
+                state.loginSuccessful = false;  
+                state.errorMsg = action.payload.message              
             }
         },
-        [submitCredentials.rejected]: (state, action) => {
+        [submitCredentials.pending]: (state, action) => {
             state.isLoading = false;
-            state.hasError = true
-        },
-    }    
+            state.hasError = true;
+        }                
+    }
 });
 
-export const errorMsg = (state) => state.registerSlice.errorMsg;
-export const successfulReg = (state) => state.registerSlice.registrationSuccessful;
+export const errorMsg = (state) => state.loginSlice.errorMsg;
+export const successfulLogin = (state) => state.loginSlice.loginSuccessful;
 
-export default registerSlice.reducer;
+export default loginSlice.reducer;

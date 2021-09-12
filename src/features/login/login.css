@@ -1,17 +1,16 @@
-.registerContainer {
+.loginContainer {
     height:100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.registerContainer .formContainer {
+.loginContainer .formContainer {
     padding:15px;
     box-sizing: border-box;
     background-color: #fff;
     width:20%;
-    height:60%;
+    height:50%;
     border-radius: 3px;
     box-shadow: 0 0 4px rgba(66,66,66,0.35);
     text-align: center;    
@@ -21,32 +20,32 @@
     justify-content: space-evenly;
 }
 
-.registerContainer .formContainer h1 {
+.loginContainer .formContainer h1 {
     color:#254E58;
     font-weight: 600;  
 }
 
-.registerContainer .formContainer form {
+.loginContainer .formContainer form {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 90%;
     margin: 0 auto;
-    height:50%;
+    height:40%;
 }
 
-.registerContainer .formContainer form input {
+.loginContainer .formContainer form input {
     padding: 7px 5px;
     border: none;
     border-bottom: 1px solid #112d32; 
 }
 
-.registerContainer .formContainer form input:focus {
+.loginContainer .formContainer form input:focus {
     border-bottom: 1px solid #112d32;
     outline: none;
 }
 
-.registerContainer .formContainer form input[type = submit] {
+.loginContainer .formContainer form input[type = submit] {
     border: none;
     background-color:#112d32;
     color:#fff;
@@ -56,7 +55,7 @@
     width:35%;    
 }
 
-.registerContainer .formContainer .loginPrompt a {
+.loginContainer .formContainer .registerPrompt a {
     color:#112d32;
     font-weight: 600;    
 }
