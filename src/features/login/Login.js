@@ -25,7 +25,13 @@ export default function Login(){
             }             
         } 
         checkSession()
-    }, [history, location.pathname])
+    }, [history, location.pathname]);
+
+    useEffect(() => {
+        if(loginSuccessful){
+            console.log("success!")
+        }
+    }, [loginSuccessful, history])
 
     const handleUserNameChange = e => {
         setUsername(e.target.value)

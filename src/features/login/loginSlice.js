@@ -9,13 +9,13 @@ export const submitCredentials = createAsyncThunk(
         const basicEncoded = Buffer.from(basic).toString('base64');
         const data = await fetch(`${baseUrl}/auth/login`, {
             method: 'POST',
+            credentials: 'include',            
             headers: {              
                 'Accept': 'application/json',
                 'Authorization': `Basic ${basicEncoded}`
             }
         });
         const json = await data.json();
-        console.log(json)
         return json;
         
     }
