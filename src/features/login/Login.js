@@ -35,7 +35,7 @@ export default function Login(){
         if(sessionActive){
             history.push("/")
         }
-    }, [sessionActive])
+    }, [sessionActive, dispatch, history])
 
     if(loginSuccessful){
         return (
