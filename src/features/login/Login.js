@@ -1,37 +1,21 @@
 import LoginIcons from '../../components/loginIcons/LoginIcons';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import './login.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkForSession } from '../../helpers/globalHelpers';
-import {errorMsg, submitCredentials, successfulLogin} from './loginSlice';
+import { errorMsg, submitCredentials, successfulLogin, sessionCheck, checkForSession} from './loginSlice';
 import ErrorContainer from '../../components/errorcontainer/ErrorContainer';
 import { useEffect } from 'react';
 export default function Login(){
 
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
-    const location = useLocation();
+    const sessionActive = useSelector(sessionCheck);
     const errorMessage = useSelector(errorMsg);
     const loginSuccessful = useSelector(successfulLogin);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        async function checkSession(){
-            const {status} = await checkForSession(location.pathname);
-            if(status === 1){
-                history.push('/home')
-            }             
-        } 
-        checkSession()
-    }, [history, location.pathname]);
-
-    useEffect(() => {
-        if(loginSuccessful){
-            console.log("success!")
-        }
-    }, [loginSuccessful, history])
 
     const handleUserNameChange = e => {
         setUsername(e.target.value)
@@ -41,10 +25,23 @@ export default function Login(){
         setPassword(e.target.value)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(submitCredentials({username: username, password: password}));
-    }    
+        dispatch(submitCredentials({username: username, password: password}))
+    }
+
+    useEffect(() => {
+        dispatch(checkForSession())
+        if(sessionActive){
+            history.push("/")
+        }
+    }, [sessionActive])
+
+    if(loginSuccessful){
+        return (
+            <Redirect to='/'/>
+        )
+    }
 
     return (
         <div>

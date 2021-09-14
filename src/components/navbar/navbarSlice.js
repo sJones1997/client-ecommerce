@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {baseUrl} from '../../app/App';
 
-export const logoutUser = createAsyncThunk(
+export const killSession = createAsyncThunk(
     'navbarSlice/logout',
     async () => {
         const data = await fetch(`${baseUrl}/auth/logout`, {
@@ -18,15 +18,19 @@ const navbarSlice = createSlice({
     name: 'navbarSlice',
     initialState: {
         isLoading: false,
-        hasError: false,
-        logoutSuccessful: false,
+        hasError: false
+    },
+    reducers: {
+        logout: state => {
+            
+        }     
     },
     extraReducers: {
-        [logoutUser.pending]: (state, action) => {
+        [killSession.pending]: (state, action) => {
             state.isLoading = true;
             state.hasError = false;
         },
-        [logoutUser.fulfilled]: (state, action) => {
+        [killSession.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
             if(action.payload.status === 1){
@@ -35,13 +39,14 @@ const navbarSlice = createSlice({
                 state.logoutSuccessful = false;              
             }
         },
-        [logoutUser.pending]: (state, action) => {
+        [killSession.pending]: (state, action) => {
             state.isLoading = false;
             state.hasError = true;
         }                
     }    
 });
 
-export const successfulLogout = (state) => state.navbarSlice.logoutSuccessful;
 
+export const successfulLogout = (state) => state.navbarSlice.logoutSuccessful;
+export const {logout} = navbarSlice.actions
 export default navbarSlice.reducer;

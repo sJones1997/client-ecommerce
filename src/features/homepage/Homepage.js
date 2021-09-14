@@ -4,8 +4,8 @@ export default function Homepage(){
     return (
         <div>
             <header>
-            <Navbar />
-            </header>            
+                <Navbar />
+            </header>                       
             <h1>Homepage</h1>
         </div>
     )

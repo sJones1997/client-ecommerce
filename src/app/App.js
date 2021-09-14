@@ -13,10 +13,10 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router>         
         <main>
           <Switch>
-            <Route exact path='/home' component={Homepage} />
+            <Route exact path='/' component={Homepage} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
           </Switch>          

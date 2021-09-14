@@ -21,17 +21,32 @@ export const submitCredentials = createAsyncThunk(
     }
 );
 
+export const checkForSession = createAsyncThunk(
+    'loginSlice/checkForSession',
+    async () => {
+        const data = await fetch(`${baseUrl}/auth/verify`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const json = await data.json();
+        return json;        
+    }
+)
+
 const loginSlice = createSlice({
     name: 'loginSlice',
     initialState: {
         isLoading: false,
         hasError: false,
         loginSuccessful: null,
+        sessionActive: false,
         errorMsg: ''
     },
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: {
         [submitCredentials.pending]: (state, action) => {
             state.isLoading = true;
@@ -42,19 +57,40 @@ const loginSlice = createSlice({
             state.hasError = false;
             if(action.payload.status === 1){
                 state.loginSuccessful = true;
+                state.sessionActive = true;
             } else {
                 state.loginSuccessful = false;  
+                state.sessionActive = false;
                 state.errorMsg = action.payload.message              
             }
         },
-        [submitCredentials.pending]: (state, action) => {
+        [submitCredentials.rejected]: (state, action) => {
             state.isLoading = false;
             state.hasError = true;
-        }                
+        },
+        [checkForSession.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [checkForSession.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+            if(action.payload.status === 1){
+                state.sessionActive = true;
+            } else {
+                state.sessionActive = false;          
+            }
+        },
+        [checkForSession.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },              
     }
 });
 
-export const errorMsg = (state) => state.loginSlice.errorMsg;
+export const errorMsg = state => state.loginSlice.errorMsg;
 export const successfulLogin = (state) => state.loginSlice.loginSuccessful;
+export const sessionCheck = (state) => state.loginSlice.sessionActive;
+export const {restoreLoginStatus} = loginSlice.actions;
 
 export default loginSlice.reducer;

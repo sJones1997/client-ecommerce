@@ -3,7 +3,6 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import {submitCredentials, errorMsg, successfulReg} from './registerSlice';
 import './register.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkForSession } from '../../helpers/globalHelpers';
 import LoginIcons from '../../components/loginIcons/LoginIcons';
 import ErrorContainer from '../../components/errorcontainer/ErrorContainer';
 
@@ -12,22 +11,10 @@ export default function Register(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const location = useLocation();
-    const history = useHistory();
     const regSuccess = useSelector(successfulReg);
     const errorMessage = useSelector(errorMsg);
+    const history = useHistory();
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        async function checkSession(){
-            const {status} = await checkForSession(location.pathname);
-            console.log(status)
-            if(status === 1){
-                history.push('/home')
-            }             
-        } 
-        checkSession()
-    }, [history, location.pathname])
 
     const handleUserNameChange = e => {
         setUsername(e.target.value)
