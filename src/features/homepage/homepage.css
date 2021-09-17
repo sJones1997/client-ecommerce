@@ -1,0 +1,25 @@
+.productsContainer {
+    width: 80%;
+    margin: 0 auto;
+    margin: 10px auto;
+    box-sizing: border-box;
+    display: grid;
+    grid-template: 1fr / repeat(5, 1fr);
+    grid-gap: 1em;    
+}
+
+.productContainer {
+    background-color:#fff;
+    height:200px;
+    box-sizing: border-box;
+    padding: 0 2em;
+    box-shadow: 0 0 4px rgba(66,66,66, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.productContentError {
+    text-align: center;
+    margin: 20px;
+}

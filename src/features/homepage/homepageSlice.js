@@ -24,6 +24,7 @@ const homepageSlice = createSlice({
     initialState: {
         productsLoading: false,
         productsError: false,
+        products: [],
         errorMsg: '',    
         redirectRequired: false    
     },
@@ -40,7 +41,12 @@ const homepageSlice = createSlice({
             state.hasError = false;
             if(action.payload.httpStatus === 403){
                 state.redirectRequired = true;
-            }            
+            }
+            if(action.payload.status === 1){
+                state.products = action.payload.message
+            } else {
+                state.products = 'No products'
+            }          
         },
         [loadProducts.rejected]: (state, action) => {
             state.isLoading = false;
@@ -50,5 +56,8 @@ const homepageSlice = createSlice({
 });
 
 export const redirect = (state) => state.homepageSlice.redirectRequired;
+export const productLoading = (state) => state.homepageSlice.productsLoading;
+export const productErrored = (state) => state.homepageSlice.productsError;
+export const allProducts = (state) => state.homepageSlice.products;
 
 export default homepageSlice.reducer;
