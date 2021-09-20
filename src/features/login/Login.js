@@ -1,11 +1,12 @@
 import LoginIcons from '../../components/loginIcons/LoginIcons';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './login.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { errorMsg, submitCredentials, successfulLogin, sessionCheck, checkForSession} from './loginSlice';
-import ErrorContainer from '../../components/errorcontainer/ErrorContainer';
+import InfoContainer from '../../components/infocontainer/InfoContainer';
 import { useEffect } from 'react';
+
 export default function Login(){
 
 
@@ -33,20 +34,15 @@ export default function Login(){
     useEffect(() => {
         dispatch(checkForSession())
         if(sessionActive){
+            console.log("here")
             history.push("/")
         }
     }, [sessionActive, dispatch, history])
 
-    if(loginSuccessful){
-        return (
-            <Redirect to='/'/>
-        )
-    }
-
     return (
         <div>
             <div className="loginContainer">
-                {loginSuccessful === false ? <ErrorContainer errorMsg={errorMessage} /> : '' }
+                {loginSuccessful === false ? <InfoContainer infoMsg={errorMessage} error={true} /> : '' }
                 <div className="formContainer">
                     <h1>Sign in below</h1>
                     <form onSubmit={(e) => handleSubmit(e)}>

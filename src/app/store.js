@@ -3,16 +3,19 @@ import registerReducer from '../features/register/registerSlice';
 import loginReducer from '../features/login/loginSlice';
 import homepageReducer from '../features/homepage/homepageSlice';
 import navbarReducer from '../components/navbar/navbarSlice';
+import productReducer from "../features/productPage/productPageSlice";
+import cartReducer from '../features/cart/cartSlice';
 
 const combinedReducer = combineReducers({
     registerSlice: registerReducer, 
     loginSlice: loginReducer,
     navbarSlice: navbarReducer,
-    homepageSlice: homepageReducer
+    homepageSlice: homepageReducer,
+    productSlice: productReducer,
+    cartSlice: cartReducer
 });
   
 const rootReducer = (state, action) => {
-    console.log(action.type)
     if(action.type === 'navbarSlice/logout'){
         return combinedReducer(undefined, action);
     }

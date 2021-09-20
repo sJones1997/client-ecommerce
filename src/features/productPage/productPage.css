@@ -1,0 +1,74 @@
+.productItemContainer {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productItem {
+    background-color: #fff;
+    width:30%;    
+    min-height:50%;
+    padding: 2em;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(66,66,66, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.productDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 3;
+}
+
+.productOrder {
+    flex: 1;
+}
+
+.productItemHeader {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.productOrder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.productOrder form {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.productOrder form div {
+    flex: 3;
+}
+
+.productOrder form div input[type='number'] {
+    box-sizing: border-box;
+    padding: 5px;
+    margin-top: 1em;
+}
+
+.productOrder form input[type="submit"] {
+    flex: 1;
+    background-color:#254E58;
+    color:#fff;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px 5px;
+}
+
+.productOrder form input[type="submit"]:hover {
+    background-color:#112d32;
+}
+

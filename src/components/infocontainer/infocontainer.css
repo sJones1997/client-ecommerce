@@ -14,3 +14,18 @@
     font-weight: 600;
     text-align: center;
 }
+
+.infoContainer {
+    position: absolute !important;
+    top:0;
+    padding:15px;
+    margin-top: 7.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(44, 173, 87, 0.75);
+    width:28.5%;
+    color:#fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './navbar.css';
 import { logout, killSession } from './navbarSlice';
 
@@ -20,9 +20,9 @@ export default function Navbar(){
                 <h2>Logo here</h2>
             </div>
             <ul>
-                <li>Home</li>
+                <li><Link to='/'>Home</Link></li>
                 <li>Orders</li>
-                <li>Cart</li>
+                <li><Link to='/cart'>Cart</Link></li>
                 <li onClick={userLogout}>Logout</li>
             </ul>
         </div>

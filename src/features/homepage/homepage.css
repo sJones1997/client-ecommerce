@@ -15,6 +15,7 @@
     padding: 0 2em;
     box-shadow: 0 0 4px rgba(66,66,66, 0.35);
     display: flex;
+    border-radius: 5px;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -22,4 +23,12 @@
 .productContentError {
     text-align: center;
     margin: 20px;
+}
+
+.productTitle, .productPrice {
+    color:#254E58;
+} 
+
+.productDescription {
+    color:#112d32;    
 }

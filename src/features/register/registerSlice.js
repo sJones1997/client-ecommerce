@@ -9,6 +9,7 @@ export const submitCredentials = createAsyncThunk(
         const basicEncoded = Buffer.from(basic).toString('base64');
         const data = await fetch(`${baseUrl}/auth`, {
             method: 'POST',
+            credentials: 'include',             
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Basic ${basicEncoded}`
@@ -26,6 +27,7 @@ const registerSlice = createSlice({
         isLoading: false,
         hasError: false,
         registrationSuccessful: null,
+        regSessionActive: false,
         errorMsg: ''
     },
     reducers: {
@@ -42,8 +44,10 @@ const registerSlice = createSlice({
             console.log(action.payload)
             if(action.payload.status === 1){
                 state.registrationSuccessful = true
+                state.regSessionActive = true;
             } else {
                 state.registrationSuccessful = false
+                state.regSessionActive = false;
                 state.errorMsg = action.payload.message
             }
         },
@@ -56,5 +60,5 @@ const registerSlice = createSlice({
 
 export const errorMsg = (state) => state.registerSlice.errorMsg;
 export const successfulReg = (state) => state.registerSlice.registrationSuccessful;
-
+export const regSessionActive = (state) => state.registerSlice.regSessionActive;
 export default registerSlice.reducer;

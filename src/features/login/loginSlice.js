@@ -33,6 +33,7 @@ export const checkForSession = createAsyncThunk(
             }
         });
         const json = await data.json();
+        console.log(json);
         return json;        
     }
 )

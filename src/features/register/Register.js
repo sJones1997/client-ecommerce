@@ -1,16 +1,19 @@
 import {useState, useEffect} from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import {submitCredentials, errorMsg, successfulReg} from './registerSlice';
 import './register.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginIcons from '../../components/loginIcons/LoginIcons';
-import ErrorContainer from '../../components/errorcontainer/ErrorContainer';
+import InfoContainer from '../../components/infocontainer/InfoContainer';
+import { checkForSession, sessionCheck } from '../login/loginSlice';
+
 
 export default function Register(){
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const sessionActive = useSelector(sessionCheck);
     const regSuccess = useSelector(successfulReg);
     const errorMessage = useSelector(errorMsg);
     const history = useHistory();
@@ -33,9 +36,23 @@ export default function Register(){
         dispatch(submitCredentials({username: username, password: password, confirmPassword: confirmPassword}));
     }
 
+    useEffect(() => {
+        dispatch(checkForSession())
+        if(sessionActive){
+            console.log("here")
+            history.push("/")
+        }
+    }, [sessionActive, dispatch, history]);
+    
+    if(regSuccess){
+        return (
+            <Redirect to='/'/>
+        )        
+    }
+
     return (
         <div className="registerContainer">
-            {regSuccess === false ? <ErrorContainer errorMsg={errorMessage} /> : '' }
+            {regSuccess === false ? <InfoContainer infoMsg={errorMessage} error={true} /> : '' }
             <div className="formContainer">
                 <h1>Create an account</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
