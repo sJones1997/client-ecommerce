@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
-import { getProductDetails, productLoading, productErrored, redirect, productDetails, addToCart, cartUpdated } from "./productPageSlice";
+import { getProductDetails, productLoading, productErrored, redirect, productDetails, addToCart, cartUpdated, resetMessage } from "./productPageSlice";
 import InfoContainer from '../../components/infocontainer/InfoContainer';
 import './productPage.css';
 import { useState } from "react";
@@ -22,6 +22,10 @@ export default function ProductPage(){
     const changeQuantity = (e) => {
         setOrderQuantity(e.target.value);
     }
+
+    useEffect(() => {
+       dispatch(resetMessage())
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(getProductDetails({id:id}));

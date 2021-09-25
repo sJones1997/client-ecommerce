@@ -34,7 +34,6 @@ export default function Login(){
     useEffect(() => {
         dispatch(checkForSession())
         if(sessionActive){
-            console.log("here")
             history.push("/")
         }
     }, [sessionActive, dispatch, history])
@@ -48,9 +47,11 @@ export default function Login(){
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input type="text" name="username" value={username} onChange={handleUserNameChange} placeholder="Username" required />
                         <input type="password" name="password" value={password} onChange={handlePasswordChange} placeholder="Password" required />
-                        <input type="submit" />
+                        <div>
+                            <input type="submit" />
+                            <LoginIcons />
+                        </div>
                     </form>
-                    <LoginIcons />
                     <div className="registerPrompt">
                         <p>New here? <Link to='/register'>Create an account</Link></p>
                     </div>                      

@@ -59,9 +59,11 @@ export default function Register(){
                     <input type="text" name="username" onChange={handleUserNameChange} value={username} placeholder="Username" required/>
                     <input type="password" name="password" onChange={handlePasswordChange} value={password} placeholder="Password" required />
                     <input type="password" name="passwordConfirm" onChange={handlePasswordConfirmChange} value={confirmPassword} placeholder="Confirm password" required />
-                    <input type="submit" value="Submit" />
+                    <div>
+                        <input type="submit" value="Submit" />  
+                        <LoginIcons />                                          
+                    </div>
                 </form>
-                <LoginIcons />
                 <div className="loginPrompt">
                     <p>Already have an accout? <Link to='/login'>Sign in here</Link></p>
                 </div>                

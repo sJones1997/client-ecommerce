@@ -59,7 +59,9 @@ const productSlice = createSlice({
         cartSuccessMessage: ''
     },
     reducers: {
-
+        resetMessage: (state) => {
+            state.cartSuccessMessage = '';
+        }
     },
     extraReducers: {
         [getProductDetails.pending]: (state, action) => {
@@ -112,5 +114,6 @@ export const productLoading = (state) => state.productSlice.productsLoading;
 export const productErrored = (state) => state.productSlice.productsError;
 export const productDetails = (state) => state.productSlice.productDetails;
 export const cartUpdated = (state) => state.productSlice.cartSuccessMessage;
+export const {resetMessage} = productSlice.actions;
 
 export default productSlice.reducer

@@ -1,11 +1,8 @@
-.icons {
-    display: flex;
-    justify-content: space-between;
-    width:70%;
-    margin: 0 auto;
+.google {
+    margin-right: 15%;
 }
 
-.icons div a {
+.google a {
     font-size: 1.75em;
-    color:#112d32;
+    color:#254E58;
 }

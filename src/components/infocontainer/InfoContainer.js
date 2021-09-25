@@ -12,9 +12,6 @@ export default function ErrorContainer(match){
         const {error} = match;
         setInfoMsg(infoMsg)
         setIsError(error);
-        setTimeout(() => {
-            setInfoMsg('')
-        }, 3000);
     }, [match]);
 
     return (

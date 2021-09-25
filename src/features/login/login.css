@@ -45,9 +45,14 @@
     outline: none;
 }
 
+.loginContainer .formContainer form div {
+    display: flex;;
+    justify-content: space-between;
+}
+
 .loginContainer .formContainer form input[type = submit] {
     border: none;
-    background-color:#112d32;
+    background-color:#254E58;
     color:#fff;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;

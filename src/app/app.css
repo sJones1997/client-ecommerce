@@ -6,12 +6,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
 
 html, body {
-    overflow-x: hidden;    
+    overflow-x: hidden;
+    background-color: #b4dbdb;    
 }
 
 .App {
-    background-color: #b4dbdb;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: auto;
     color: #333;
     font-family: 'Raleway', sans-serif;
 }
