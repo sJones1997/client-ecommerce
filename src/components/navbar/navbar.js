@@ -17,7 +17,7 @@ export default function Navbar(){
     return (
         <div className="navbarContainer">
             <div className="logo">
-                <h2>Logo here</h2>
+                <h2>The anything shop</h2>
             </div>
             <ul>
                 <li><Link to='/'>Home</Link></li>

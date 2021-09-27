@@ -30,7 +30,7 @@ export const orderSlice = createSlice({
     initialState: {
         hasErrored: false,
         isLoading: false,
-        order: [],
+        orders: [],
         redirectRequired: false,        
     },
     reducers: {

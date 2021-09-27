@@ -28,6 +28,7 @@ const registerSlice = createSlice({
         hasError: false,
         registrationSuccessful: null,
         regSessionActive: false,
+        redirectRequired: false,
         errorMsg: ''
     },
     reducers: {
@@ -41,7 +42,6 @@ const registerSlice = createSlice({
         [submitCredentials.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
-            console.log(action.payload)
             if(action.payload.status === 1){
                 state.registrationSuccessful = true
                 state.regSessionActive = true;

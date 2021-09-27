@@ -47,7 +47,9 @@ export default function OrderTile(match){
                     </div>
                 </div>
                 :
-                <h1>help</h1>
+                <div>
+                    
+                </div>
             }
         </div>
     );

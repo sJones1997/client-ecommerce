@@ -29,7 +29,7 @@ export default function Orders(){
     return (
         <div className="ordersContainer">
             {
-                (!(loading && errored) && orders !== undefined)
+                (!(loading && errored) && orders.length)
                 ?
                 <div className="orders">
                     {orders.map((e,i) => (
@@ -37,7 +37,9 @@ export default function Orders(){
                     ))}
                 </div>
                 :
-                <h1>help</h1>
+                <div className="ordersEmpty">
+                   <h2 style={{textAlign: 'center'}}>{!orders.length ? 'No orders' : 'Loading Orders'}</h2>
+                </div>                   
             }
 
         </div>

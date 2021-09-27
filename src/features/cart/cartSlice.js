@@ -45,6 +45,29 @@ export const getCartItems = createAsyncThunk(
     }
 )
 
+export const updateCart = createAsyncThunk(
+    'cartSlice/updateCartItems',
+    async (obj) => {
+        try {
+            const data = await fetch(`${baseUrl}/cart/cartItem`, {
+                method: 'PUT',
+                credentials: 'include',
+                headers :{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'                    
+                },    
+                body: JSON.stringify({items: obj})
+            })
+            const {status} = data;
+            const json = await data.json();
+            json['httpStatus'] = status
+            return json;
+        } catch (err){
+            console.log(err)
+        }
+    }
+)
+
 const cartSlice = createSlice({
     name: 'cartSlice',
     initialState: {
@@ -52,13 +75,23 @@ const cartSlice = createSlice({
         cartLoading: false,
         cartItemsLoading: false,
         cartItemsError: false,
+        cartItemsUpdatedLoading: false,
+        cartItemsUpdatedErrored: false,
         redirectRequired: false,
+        cartItemsUpdated: false,
         cartItems: [],
         cartId: null,
         errorMsg: ''
     },
     reducers: {
-
+        updateItemQuantity: (state, action) => {
+            const {payload} = action;
+            state.cartItems[payload.arrayIteration].quantity += payload.diff
+            state.cartItems[payload.arrayIteration].totalProductPrice += (payload.diff * state.cartItems[payload.arrayIteration].price)
+        },
+        resetUpdateStatus: (state) => {
+            state.cartItemsUpdated = false;
+        }
     },
     extraReducers: {
         [getUserCart.pending]: (state, action) => {
@@ -101,7 +134,30 @@ const cartSlice = createSlice({
         [getCartItems.rejected]: (state, action) => {
             state.cartItemsErrored = true;
             state.cartItemsLoading = false;
-        }
+        },
+
+        [updateCart.pending]: (state, action) => {
+            state.cartItemsUpdatedLoading = true;
+            state.cartItemsUpdatedErrored = false
+        },
+        [updateCart.fulfilled]: (state, action) => {
+            state.cartItemsUpdatedErrored = false;
+            state.cartItemsLoading = false;
+            if(action.payload.httpStatus === 403){
+                state.redirectRequired = true
+            }
+            if(action.payload.status === 1){
+                state.cartItemsUpdated = action.payload.message.find(e => e === true) ? true : false
+                console.log(state.cartItemsUpdated)
+            } else {
+                state.cartItemsUpdatedErrored = true;
+                state.cartItemsUpdated = action.payload.message
+            }
+        },
+        [updateCart.rejected]: (state, action) => {
+            state.cartItemsUpdatedErrored = true;
+            state.cartItemsUpdatedLoading = false;
+        }        
     }
 })
 
@@ -112,5 +168,10 @@ export const loadingCart = (state) => state.cartSlice.cartLoading;
 export const erroredCart = (state) => state.cartSlice.cartErrored;
 export const cartItems = (state) => state.cartSlice.cartItems;
 export const redirectRequired = (state) => state.cartSlice.redirectRequired;
+export const cartUpdated = (state) => state.cartSlice.cartItemsUpdated;
+export const cartItemsUpdatedLoading = (state) => state.cartSlice.cartItemsUpdatedLoading;
+export const cartItemsUpdatedErrored = (state) => state.cartSlice.cartItemsUpdatedErrored;
+export const {updateItemQuantity} = cartSlice.actions;
+export const {resetUpdateStatus} = cartSlice.actions
 
 export default cartSlice.reducer;

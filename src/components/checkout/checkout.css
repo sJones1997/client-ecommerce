@@ -1,0 +1,30 @@
+
+#payment-form .payButton, #payment-form .payButtonDisabled {
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    width:15%;
+    padding: 0.75em 0;   
+    margin-top: 1em;
+}
+#payment-form .payButton {
+    background-color:#254E58;
+    color:#fff;
+    cursor: pointer;    
+}
+
+#payment-form .payButtonDisabled {
+    background-color:#748b91;    
+}
+
+@media screen and (max-width: 540px) {
+    #payment-form {
+        justify-content: center;
+    }
+    #payment-form .payButton, #payment-form .payButtonDisabled {
+        width:75%;    
+        display: block;
+        margin: 1.25em auto 0em auto !important;
+    }
+}

@@ -40,8 +40,6 @@ export default function ProductPage(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(id) 
-        console.log(orderQuantity);
         dispatch(addToCart({productId: parseInt(id), orderQuantity: orderQuantity}))
     }
 

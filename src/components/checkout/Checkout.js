@@ -4,10 +4,17 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import { createPaymentIntent, clientSecret, orderPlaced, placeOrder, resetOrderStatus } from "./checkoutSlice";
+import { createPaymentIntent, 
+  clientSecret, 
+  orderPlaced, 
+  placeOrder, 
+  resetOrderStatus,
+  redirectRequired } from "./checkoutSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import './checkout.css'
+
 
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
@@ -17,6 +24,7 @@ export default function CheckoutForm() {
   const secret = useSelector(clientSecret);
   const orderSuccess = useSelector(orderPlaced);
   const stripe = useStripe();
+  const redirect = useSelector(redirectRequired)
   const elements = useElements();
   const dispatch = useDispatch();
   const history = useHistory()
@@ -25,6 +33,13 @@ export default function CheckoutForm() {
     // Create PaymentIntent as soon as the page loads
     dispatch(createPaymentIntent())
   }, [dispatch]);
+
+  useEffect(() => {
+    if(redirect){
+      dispatch({action:null, type:'navbarSlice/logout'})
+      history.push('/login');            
+  }
+  },[redirect, history, dispatch])
 
   useEffect(() => {
     if(orderSuccess){
@@ -44,6 +59,9 @@ export default function CheckoutForm() {
         "::placeholder": {
           color: "#32325d"
         }
+      },
+      button: {
+        backgroundColor:'red'
       },
       invalid: {
         color: "#fa755a",
@@ -85,6 +103,7 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
       <button
+        className={!disabled ? 'payButton' : 'payButtonDisabled'}
         disabled={processing || disabled || succeeded}
         id="submit"
       >

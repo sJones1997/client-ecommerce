@@ -53,6 +53,7 @@ const checkoutSlice = createSlice({
         isLoading: false,
         hasError: false,
         orderSuccess: false,
+        redirectRequired: false,
         clientSecret: ''
     },
     reducers: {
@@ -68,6 +69,9 @@ const checkoutSlice = createSlice({
         [placeOrder.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
+            if(action.payload.httpStatus === 403){
+                state.redirectRequired = true;
+            }
             if(action.payload.status === 1){
                 state.orderSuccess = true
             }
@@ -98,5 +102,6 @@ export const orderPlaced = (state) => state.checkoutSlice.orderSuccess;
 export const checkoutState = (state) => state.checkoutSlice.checkoutState;
 export const {resetOrderStatus} = checkoutSlice.actions;
 export const clientSecret = (state) => state.checkoutSlice.clientSecret;
+export const redirectRequired = (state) => state.checkoutSlice.redirectRequired;
 
 export default checkoutSlice.reducer;

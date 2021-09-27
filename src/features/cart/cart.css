@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 
-.checkoutDisabled, .upgit dateCartDisabled {
+.checkoutDisabled, .updateCartDisabled {
     background-color:#748b91;
 }
 
@@ -87,4 +87,22 @@ h2 {
     font-size: 0.95em;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+    .checkoutContainer, .details, .info {
+        flex-direction: column;
+    }
+
+    .info > * {
+        margin-bottom:1em;
+    }
+    .checkout, .updateCart, .checkoutDisabled, .updateCartDisabled {
+        width:75%;
+        margin-bottom:1em;
+    }    
+    .checkoutContainer h2 {
+        font-size: 1.35em;
+        margin-top: 1em;
+    }    
 }
