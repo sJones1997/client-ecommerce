@@ -75,10 +75,8 @@ export default function Cart(){
 
     const handleUpdateSubmit = (e) => {
         let update = updateCart.reduce((accu, prev) => {
-            
-            return prev['diff']
+            return {id: prev['id'], diff: accu['diff'] + prev['diff']}
         })
-        console.log(update)
     }
 
     const getCartPrice = (items) => {
