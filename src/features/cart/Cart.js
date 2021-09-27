@@ -35,6 +35,7 @@ export default function Cart(){
     const redirect = useSelector(redirectRequired);
     const [updateCart, setUpdateCart] = useState([]);    
     const [updateCartButtonDisabled, setUpdateCartButtonDisabled] = useState(true);
+    const [itemQuantity, setItemQuantity] = useState(0);
 
     useEffect(() => {
         dispatch(getUserCart());
@@ -77,6 +78,7 @@ export default function Cart(){
         let update = updateCart.reduce((accu, prev) => {
             return {id: prev['id'], diff: accu['diff'] + prev['diff']}
         })
+        console.log(update)
     }
 
     const getCartPrice = (items) => {
@@ -86,6 +88,8 @@ export default function Cart(){
         })
         return total;
     } 
+
+    const handleQuantity
 
     return (
         <div className="cartContainer">
@@ -100,7 +104,7 @@ export default function Cart(){
                             <div className="product">
                                 <div className="details">
                                     <div className="info">
-                                        <h2>{e.name} ({e.quantity})</h2>
+                                        <h2>{e.name} ({handleQuantity(e.quantity)})</h2>
                                         <div className="itemOptions">
                                             <div className="add" onClick={() => {handleProductIncrease(e.id)}}>
                                                 <span><FontAwesomeIcon icon={faPlus} /></span>
