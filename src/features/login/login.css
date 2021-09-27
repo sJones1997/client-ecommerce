@@ -46,7 +46,7 @@
 }
 
 .loginContainer .formContainer form div {
-    display: flex;;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -63,4 +63,25 @@
 .loginContainer .formContainer .registerPrompt a {
     color:#112d32;
     font-weight: 600;    
+}
+
+@media screen and (max-width: 1114px) {
+    .loginContainer .formContainer {
+        width:40%;                
+    }    
+}
+
+@media screen and (max-width: 540px) {
+    .loginContainer .formContainer {
+        width:70%;        
+        height:70%;        
+    }
+
+    .loginContainer .formContainer form input[type = submit] {
+        width:50%;            
+    }    
+
+    .loginContainer .formContainer form div {
+        justify-content: space-between;
+    }    
 }

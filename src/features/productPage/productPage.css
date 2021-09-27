@@ -72,3 +72,33 @@
     background-color:#112d32;
 }
 
+@media screen and (max-width: 300px) {
+    .productItemHeader{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .productItemContainer {
+        width: 100%;
+    }    
+    .productItem {
+        width: 90% !important;
+    }
+}
+
+@media screen and (max-width: 1114px) {
+    .productItemContainer {
+        align-items: flex-start;
+        margin-top: 2em;
+    }    
+    .productItem {
+        width: 50%;
+        height: 50%;
+    }
+
+    .productOrder form div {
+        flex: 1;
+    }
+
+}

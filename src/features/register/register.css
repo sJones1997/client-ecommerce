@@ -65,3 +65,21 @@
     color:#112d32;
     font-weight: 600;    
 }
+
+@media screen and (max-width: 1114px) {
+    .registerContainer .formContainer {
+        width:40%;        
+    } 
+}
+
+@media screen and (max-width: 540px) {
+    .registerContainer .formContainer {
+        width:70%;        
+        height:70%;
+    }
+
+    .registerContainer .formContainer form input[type = submit] {
+        width:50%;            
+    }    
+
+}

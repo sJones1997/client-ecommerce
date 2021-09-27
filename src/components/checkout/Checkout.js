@@ -4,7 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import { createPaymentIntent, clientSecret, orderPlaced, placeOrder } from "./checkoutSlice";
+import { createPaymentIntent, clientSecret, orderPlaced, placeOrder, resetOrderStatus } from "./checkoutSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -28,9 +28,10 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if(orderSuccess){
+      dispatch(resetOrderStatus())
       history.push('/orders');
     }
-  }, [orderSuccess, history])
+  }, [orderSuccess, history, dispatch])
 
 
   const cardStyle = {
@@ -102,15 +103,6 @@ export default function CheckoutForm() {
         </div>
       )}
       {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {" "}
-          Stripe dashboard.
-        </a> Refresh the page to pay again.
-      </p>
     </form>
   );
 }

@@ -58,3 +58,23 @@ hr {
 .paymentContainerHide {
     display: none;
 }
+
+@media screen and (max-width: 540px) {
+    .cart {
+        width:90%;
+    }    
+
+    .checkout {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .checkout button, .checkoutDisabled button {
+        width:50%;     
+        margin-top:1em;   
+    }    
+
+    .checkoutDisabled {
+        flex-direction: column-reverse;
+    }    
+}

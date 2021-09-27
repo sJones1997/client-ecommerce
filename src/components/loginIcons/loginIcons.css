@@ -6,3 +6,9 @@
     font-size: 1.75em;
     color:#254E58;
 }
+
+@media screen and (max-width: 540px) {
+    .google {
+        margin-right:0;
+    }    
+}

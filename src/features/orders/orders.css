@@ -2,3 +2,9 @@
     width: 70%;
     margin: 0 auto;
 }
+
+@media screen and (max-width: 540px) {
+    .ordersContainer {
+        width: 90%;
+    }    
+}

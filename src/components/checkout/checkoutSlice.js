@@ -52,13 +52,12 @@ const checkoutSlice = createSlice({
     initialState: {
         isLoading: false,
         hasError: false,
-        orderPlaced: false,
         orderSuccess: false,
         clientSecret: ''
     },
     reducers: {
         resetOrderStatus: (state) => {
-            state.orderPlaced = false;
+            state.orderSuccess = false;
         }
     },
     extraReducers: {

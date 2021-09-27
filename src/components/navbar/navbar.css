@@ -23,3 +23,21 @@
 .navbarContainer .logo h2 {
     color:#254E58;
 }
+
+@media screen and (max-width: 1114px) {
+    .navbarContainer {
+        flex-direction: column;
+        padding: 1em;
+    }    
+    .navbarContainer ul {
+        width: 50%;
+        margin-top:1em;
+    }    
+}
+
+@media screen and (max-width: 540px) {
+    .navbarContainer ul {
+        width: 100%;
+        margin-top:1em;
+    }        
+}

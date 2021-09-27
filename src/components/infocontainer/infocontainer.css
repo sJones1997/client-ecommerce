@@ -29,3 +29,12 @@
     font-weight: 600;
     text-align: center;
 }
+
+@media screen and (max-width: 540px) {
+    .infoContainer {
+        top: 40%;
+        width:50%;
+    }
+}
+
+@media screen and (max-width: 1114px) {}
