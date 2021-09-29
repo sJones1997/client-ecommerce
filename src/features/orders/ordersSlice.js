@@ -46,11 +46,9 @@ export const orderSlice = createSlice({
             state.isLoading = false;
             if(action.payload.httpStatus === 403){
                 state.redirectRequired = true;
-                console.log(state.redirectRequired)
             }       
             if(action.payload.status === 1){
                 state.orders = action.payload.message;
-                console.log(action.payload.message)
             }     
         },
         [getOrders.rejected]: (state, action) => {

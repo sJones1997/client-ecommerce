@@ -19,7 +19,6 @@ export default function Orders(){
     }, [dispatch])
 
     useEffect(() => {
-        console.log(redirect)
         if(redirect){
             dispatch({action: null, type:'navbarSlice/logout'});
             history.push('/login');

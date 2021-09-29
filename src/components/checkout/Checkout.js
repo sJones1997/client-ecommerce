@@ -94,7 +94,6 @@ export default function CheckoutForm() {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      console.log("here")
       dispatch(placeOrder())
     }
   };
