@@ -15,7 +15,7 @@ import { checkForSession, sessionCheck } from "../features/login/loginSlice";
 import { regSessionActive } from "../features/register/registerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-export const baseUrl = 'http://localhost:3001/api'
+export const baseUrl = 'https://sj-ecommerce-api.herokuapp.com/api'
 
 function App() {
   

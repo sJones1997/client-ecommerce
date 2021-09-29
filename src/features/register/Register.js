@@ -39,7 +39,6 @@ export default function Register(){
     useEffect(() => {
         dispatch(checkForSession())
         if(sessionActive){
-            console.log("here")
             history.push("/")
         }
     }, [sessionActive, dispatch, history]);
