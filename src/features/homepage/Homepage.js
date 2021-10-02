@@ -34,7 +34,7 @@ export default function Homepage(){
             return (<div className="productContainer" onClick={() => {loadProductPage(e.id)}} key={i}>
                 <div className="productHeader">
                 <h2 className="productTitle">{e.name}</h2>
-                <h3 className="productPrice">£{e.price}</h3>
+                <h3 className="productPrice">£{e.price.toFixed(2)}</h3>
                 </div>
                 <p className="productDescription">{e.description}</p>
             </div>)

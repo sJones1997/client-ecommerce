@@ -3,12 +3,13 @@
 .errorContainer {
     position: absolute !important;
     top:0;
-    padding:15px;
-    margin-top: 1.5em;
+    padding:1em;
+    margin-top: 0.75em;
+    box-sizing: border-box;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(241, 130, 141,0.75);
-    width:25%;
+    width:auto;
     color:#fff;
     font-size: 1.2em;
     font-weight: 600;
@@ -32,8 +33,9 @@
 
 @media screen and (max-width: 540px) {
     .infoContainer {
-        top: 40%;
+        top: -9%;
         width:50%;
+        background-color: rgba(44, 173, 87, 1);        
     }
 }
 

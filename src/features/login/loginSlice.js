@@ -3,21 +3,30 @@ import {baseUrl} from '../../app/App';
 
 export const submitCredentials = createAsyncThunk(
     'loginSlice/submitDetails',
-    async (userObj) => {
+    async (userObj) => {       
         const {username, password} = userObj;
-        const basic = `${username}:${password}`;
-        const basicEncoded = Buffer.from(basic).toString('base64');
-        const data = await fetch(`${baseUrl}/auth/login`, {
-            method: 'POST',
-            credentials: 'include',            
-            headers: {              
-                'Accept': 'application/json',
-                'Authorization': `Basic ${basicEncoded}`
-            }
-        });
-        const json = await data.json();
-        return json;
-        
+        if(username.length >= 3 && password.length >= 8){
+            const basic = `${username}:${password}`;
+            const basicEncoded = Buffer.from(basic).toString('base64');
+            const data = await fetch(`${baseUrl}/auth/login`, {
+                method: 'POST',
+                credentials: 'include',            
+                headers: {              
+                    'Accept': 'application/json',
+                    'Authorization': `Basic ${basicEncoded}`
+                }
+            });
+            const json = await data.json();
+            return json; 
+        }
+        let errorArray = []
+        if(username.length < 3){
+            errorArray.push(`username "${username}" not long enough (3 characters required)`)
+        }
+        if(password.length < 8){
+            errorArray.push('password not longer enough (8 characters required)')
+        }     
+        return {'message': errorArray}          
     }
 );
 
@@ -47,7 +56,11 @@ const loginSlice = createSlice({
         sessionActive: false,
         errorMsg: ''
     },
-    reducers: {},
+    reducers: {
+        resetMsg: state => {
+            state.errorMsg = ''
+        }
+    },
     extraReducers: {
         [submitCredentials.pending]: (state, action) => {
             state.isLoading = true;
@@ -92,5 +105,6 @@ const loginSlice = createSlice({
 export const errorMsg = state => state.loginSlice.errorMsg;
 export const successfulLogin = (state) => state.loginSlice.loginSuccessful;
 export const sessionCheck = (state) => state.loginSlice.sessionActive;
+export const {resetMsg} = loginSlice.actions
 
 export default loginSlice.reducer;

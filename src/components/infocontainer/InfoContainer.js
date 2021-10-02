@@ -8,7 +8,13 @@ export default function ErrorContainer(match){
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        const {infoMsg} = match;
+        let {infoMsg} = match;
+        console.log(typeof(infoMsg))
+        if(typeof(infoMsg) === 'object'){
+            infoMsg = infoMsg.map((e, i) => {
+                return <p key={i}>{e}</p>;
+            })
+        }
         const {error} = match;
         setInfoMsg(infoMsg)
         setIsError(error);

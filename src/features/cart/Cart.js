@@ -63,6 +63,7 @@ export default function Cart(){
         }
     }, [cartId, dispatch, cartLoading, cartErroed])
 
+
     const handlePaymentContainer = () => {
         let setPayment = showPayment;
         setShowPayment(setPayment = !setPayment)
@@ -83,6 +84,7 @@ export default function Cart(){
     const handleUpdateSubmit = async (e) => { 
         await dispatch(updateCart(items));
         await dispatch(getCartItems({id: cartId}))     
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setUpdateCartButtonDisabled(true)               
     }
 
@@ -152,7 +154,11 @@ export default function Cart(){
                 </div>    
             }
             <div class="cartInfoContainer">
-                {cartHasUpdated && !(cartUpdatedLoading && cartUpdatedErrored) ? <InfoContainer infoMsg={'Cart updated'} error={false} /> : ''}                  
+                {cartHasUpdated && !(cartUpdatedLoading && cartUpdatedErrored) 
+                ?  
+                <InfoContainer infoMsg={'Cart updated'} error={false} /> 
+                : 
+                ''}                  
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 .cart {
     background-color:#fff;
-    width:70%;
+    width:90%;
     margin: 2em auto;
     border-radius: 5px;
     padding: 1em 2em; 
@@ -90,19 +90,38 @@ h2 {
 }
 
 @media screen and (max-width: 540px) {
-    .checkoutContainer, .details, .info {
+    .cart {
+        padding:1em 0.5em;
+    }    
+    .checkoutContainer, .details {
         flex-direction: column;
     }
 
+    .info {
+        width:90%;
+        margin: 0 auto;
+    }
     .info > * {
         margin-bottom:1em;
+        width:50%;
     }
+    .itemOptions {
+        justify-content: flex-end;
+    }   
+    .itemOptions > * {
+        margin-right: 0;
+        margin-left: 1.5em;
+    } 
     .checkout, .updateCart, .checkoutDisabled, .updateCartDisabled {
         width:75%;
-        margin-bottom:1em;
+        margin:1em 0;
     }    
     .checkoutContainer h2 {
         font-size: 1.35em;
         margin-top: 1em;
     }    
+    .accumulativePrice {
+        width: 90%;
+        text-align: left;
+    }
 }

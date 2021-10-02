@@ -11,11 +11,12 @@ import ProductPage from '../features/productPage/productPage';
 import Orders from '../features/orders/Orders';
 import Cart from '../features/cart/Cart';
 import Navbar from '../components/navbar/navbar';
+import NotFound from '../features/notfound/NotFound';
 import { checkForSession, sessionCheck } from "../features/login/loginSlice";
 import { regSessionActive } from "../features/register/registerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-export const baseUrl = 'https://ecommerce-api.sean-jones.site/api'
+export const baseUrl = 'http://localhost:3001/api'
 
 function App() {
   
@@ -40,7 +41,8 @@ function App() {
             <Route exact path='/register' component={Register} />
             <Route exact path='/product/:id' component={ProductPage} />   
             <Route exact path="/orders" component={Orders} />
-            <Route exact path='/cart' component={Cart} />        
+            <Route exact path='/cart' component={Cart} />
+            <Route component={NotFound}/>        
           </Switch>          
         </main>
       </Router>

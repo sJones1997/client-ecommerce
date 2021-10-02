@@ -37,6 +37,7 @@ const homepageSlice = createSlice({
             state.hasError = false;            
         },
         [loadProducts.fulfilled]:(state, action) => {
+            console.log(action.payload)
             state.isLoading = false;
             state.hasError = false;
             if(action.payload.httpStatus === 403){

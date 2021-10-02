@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './login.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { errorMsg, submitCredentials, successfulLogin, sessionCheck, checkForSession} from './loginSlice';
+import { errorMsg, submitCredentials, successfulLogin, sessionCheck, checkForSession, resetMsg} from './loginSlice';
 import InfoContainer from '../../components/infocontainer/InfoContainer';
 import { useEffect } from 'react';
 
@@ -17,6 +17,10 @@ export default function Login(){
     const errorMessage = useSelector(errorMsg);
     const loginSuccessful = useSelector(successfulLogin);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(resetMsg())
+    }, [dispatch])
 
     const handleUserNameChange = e => {
         setUsername(e.target.value)
@@ -45,7 +49,7 @@ export default function Login(){
                 <div className="formContainer">
                     <h1>Sign in below</h1>
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <input type="text" name="username" value={username} onChange={handleUserNameChange} placeholder="Username" required />
+                        <input type="text" name="username"  value={username} onChange={handleUserNameChange} placeholder="Username" required />
                         <input type="password" name="password" value={password} onChange={handlePasswordChange} placeholder="Password" required />
                         <div>
                             <input type="submit" />

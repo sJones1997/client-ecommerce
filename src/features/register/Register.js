@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import {submitCredentials, errorMsg, successfulReg} from './registerSlice';
+import {submitCredentials, errorMsg, successfulReg, resetMsg} from './registerSlice';
 import './register.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginIcons from '../../components/loginIcons/LoginIcons';
@@ -18,6 +18,10 @@ export default function Register(){
     const errorMessage = useSelector(errorMsg);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(resetMsg())
+    }, [dispatch])
 
     const handleUserNameChange = e => {
         setUsername(e.target.value)
@@ -55,9 +59,9 @@ export default function Register(){
             <div className="formContainer">
                 <h1>Create an account</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <input type="text" name="username" onChange={handleUserNameChange} value={username} placeholder="Username" required/>
-                    <input type="password" name="password" onChange={handlePasswordChange} value={password} placeholder="Password" required />
-                    <input type="password" name="passwordConfirm" onChange={handlePasswordConfirmChange} value={confirmPassword} placeholder="Confirm password" required />
+                    <input type="text" name="username" minLength="3" onChange={handleUserNameChange} value={username} placeholder="Username" required/>
+                    <input type="password" name="password" minLength="8" onChange={handlePasswordChange} value={password} placeholder="Password" required />
+                    <input type="password" name="passwordConfirm" minLength="8" onChange={handlePasswordConfirmChange} value={confirmPassword} placeholder="Confirm password" required />
                     <div>
                         <input type="submit" value="Submit" />  
                         <LoginIcons />                                          

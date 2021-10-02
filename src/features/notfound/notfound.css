@@ -1,0 +1,18 @@
+.notFoundContainer {
+    background-color:#fff;
+    width: 90%;
+    padding:1em;
+    box-sizing: border-box;
+    box-shadow: 0 0 4px rgba(66,66,66,0.35);   
+    margin: 2em auto 0 auto;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.notFoundContainer > * {
+    margin-bottom: 0.5em;
+}
+
+.notFoundContainer a {
+    text-decoration: underline;
+}

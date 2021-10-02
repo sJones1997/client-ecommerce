@@ -20,8 +20,9 @@ export default function OrderTile(match){
 
     const getDate = (date) => {
         const d = new Date(date);
+        const day = d.getDate().toString().length === 1 ? `0${d.getDate()}` : d.getDate();
         const month = d.getMonth().toString().length === 1 ? `0${d.getMonth()}` : d.getMonth() 
-        return `${d.getDate()}-${month}-${d.getFullYear()}`
+        return `${day}/${month}/${d.getFullYear()}`
     }
 
     return (
